@@ -1,0 +1,33 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Check out the code
+      - uses: actions/checkout@v3
+
+      # Set up Node.js environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      # Install dependencies
+      - name: Install Dependencies
+        run: npm ci
+
+      # Build the project
+      - name: Build
+        run: npm run build
+
+      # Deploy to GitHub Pages
+      - name: Deploy
+        run: npm run deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
