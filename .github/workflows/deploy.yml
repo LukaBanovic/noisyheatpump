@@ -25,6 +25,11 @@ jobs:
       # Build the project
       - name: Build
         run: npm run build
+      # Configure Git
+      - name: Configure Git
+        run: |
+          git config --global user.name "LukaBanovic"
+          git config --global user.email "luka.banovic@gmail.com"
 
       # Deploy to GitHub Pages
       - name: Deploy
